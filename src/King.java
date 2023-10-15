@@ -23,9 +23,9 @@ public class King extends ChessPiece {
 
     public String getImage() {
         if (game.boardData[this.index_Y][this.index_X] < 0) {
-            return "/Java/src/Grade12/Culminating/images/bk.png";
+            return IMAGE_LOCATION + "bk.png";
         }
-        return "/Java/src/Grade12/Culminating/images/wk.png";
+        return IMAGE_LOCATION + "wk.png";
     }
 
     public boolean isEmpty() {

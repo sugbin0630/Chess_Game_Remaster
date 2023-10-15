@@ -3,6 +3,7 @@ public abstract class ChessPiece {
     protected int index_X;
     protected int index_Y;
     protected String image;
+    final protected String IMAGE_LOCATION = "C:/Users/Sungbin Ko/Desktop/coding/Java/Chess_Game_Remaster/src/images/";
 
     public ChessPiece(Game_Record game, int index_X, int index_Y) {
         this.game = game;

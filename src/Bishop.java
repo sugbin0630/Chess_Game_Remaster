@@ -64,9 +64,9 @@ public class Bishop extends ChessPiece {
 
     public String getImage() {
         if (game.boardData[this.index_Y][this.index_X] < 0) {
-            return "/Java/src/Grade12/Culminating/images/bb.png";
+            return IMAGE_LOCATION + "bb.png";
         }
-        return "/Java/src/Grade12/Culminating/images/wb.png";
+        return IMAGE_LOCATION + "wb.png";
     }
 
     public boolean isEmpty() {

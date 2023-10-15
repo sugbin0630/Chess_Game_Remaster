@@ -3,6 +3,7 @@ import javax.swing.*;
 
 public class Board extends JFrame {
     final static String FILE_NAME = "ChessGame_Records.txt";
+    final static String FILE_LOCATION = "C:/Users/Sungbin Ko/Desktop/coding/Java/Chess_Game_Remaster/src/";
     private Container c = getContentPane();
     private static RecordGroup recordGroup = RecordGroup.getRecordGroup();
     static Game_Record loaded_Game_Record;
@@ -143,13 +144,13 @@ public class Board extends JFrame {
         }
 
         pieces_Button[Y][X]
-                .setIcon(new ImageIcon("/Java/src/Grade12/Culminating/images/moveable_pressed.png"));
+                .setIcon(new ImageIcon(FILE_LOCATION + "images/moveable_pressed.png"));
         for (int i = 0; i < pieces_Button.length; i++) {
             for (int j = 0; j < pieces_Button.length; j++) {
                 if (game.pieces[Y][X].moveable(i, j)) {
                     index[0] = X;
                     index[1] = Y;
-                    pieces_Button[j][i].setIcon(new ImageIcon("/Java/src/Grade12/Culminating/images/moveable.png"));
+                    pieces_Button[j][i].setIcon(new ImageIcon(FILE_LOCATION + "images/moveable.png"));
                     pieces_Button[j][i].setEnabled(true);
                 }
             }
@@ -162,7 +163,7 @@ public class Board extends JFrame {
     void setBoard() {
         JLabel board = new JLabel();
 
-        board.setIcon(new ImageIcon("/Java/src/Grade12/Culminating/images/board.png"));
+        board.setIcon(new ImageIcon(FILE_LOCATION + "images/board.png"));
         board.setBounds(92, -50, 600, 600);
 
         c.add(board);

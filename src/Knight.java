@@ -25,9 +25,9 @@ public class Knight extends ChessPiece {
 
     public String getImage() {
         if (game.boardData[this.index_Y][this.index_X] < 0) {
-            return "/Java/src/Grade12/Culminating/images/bn.png";
+            return IMAGE_LOCATION + "bn.png";
         }
-        return "/Java/src/Grade12/Culminating/images/wn.png";
+        return IMAGE_LOCATION + "wn.png";
     }
 
     public boolean isEmpty() {

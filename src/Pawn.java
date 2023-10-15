@@ -56,9 +56,9 @@ public class Pawn extends ChessPiece {
 
     public String getImage() {
         if (game.boardData[this.index_Y][this.index_X] < 0) {
-            return "/Java/src/Grade12/Culminating/images/bp.png";
+            return IMAGE_LOCATION + "bp.png";
         }
-        return "/Java/src/Grade12/Culminating/images/wp.png";
+        return IMAGE_LOCATION + "wp.png";
     }
 
     public boolean isEmpty() {

@@ -62,9 +62,9 @@ public class Rook extends ChessPiece {
 
     public String getImage() {
         if (game.boardData[this.index_Y][this.index_X] < 0) {
-            return "/Java/src/Grade12/Culminating/images/br.png";
+            return IMAGE_LOCATION + "br.png";
         }
-        return "/Java/src/Grade12/Culminating/images/wr.png";
+        return IMAGE_LOCATION + "wr.png";
     }
 
     public boolean isEmpty() {
