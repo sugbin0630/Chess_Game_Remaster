@@ -92,8 +92,8 @@ public class RecordGroup {
      * @return return index of searched Game_Record, -1 if not found
      */
     public int searchByCode(String code) {
-        for (int i = 0; i < getArrayList().size(); i++) {
-            if (getArrayList().get(i).getCode().equals(code)) {
+        for (int i = 0; i < records.size(); i++) {
+            if (records.get(i).getCode().equals(code)) {
                 return i;
             }
         }
@@ -160,15 +160,15 @@ public class RecordGroup {
      */
     public boolean fileSave(String fileName) {
         try {
-            BufferedWriter wr = new BufferedWriter(new FileWriter(fileName, false));
-            for (int i = 0; i < recordGroup.getArrayList().size(); i++) {
-                saveGame(recordGroup.getArrayList().get(i), fileName);
+            BufferedWriter wr = new BufferedWriter(new FileWriter(fileName, true));
+            for (int i = 0; i < records.size(); i++) {
+                saveGame(records.get(i), fileName);
             }
-            for (int i = 0; i < recordGroup.getArrayList().size(); i++) {
-                for (int j = 0; j < recordGroup.getArrayList().size(); j++) {
-                    if (recordGroup.getArrayList().get(i).getCode()
-                            .equals(recordGroup.getArrayList().get(j).getCode())) {
-                        deleteGame(recordGroup.getArrayList().get(i).getCode());
+            for (int i = 0; i < records.size(); i++) {
+                for (int j = 0; j < records.size(); j++) {
+                    if (records.get(i).getCode()
+                            .equals(records.get(j).getCode())) {
+                        deleteGame(records.get(i).getCode());
                     }
                 }
 
@@ -186,10 +186,10 @@ public class RecordGroup {
      * @return true if success
      */
     public boolean fileLoad(String fileName) {
-        Game_Record newGame = new Game_Record("", "", 0, 0, getArrayList());
         try {
             BufferedReader rd = new BufferedReader(new FileReader(fileName));
             while (rd.readLine() != null) {
+                Game_Record newGame = new Game_Record("", "", 0, 0, records);
                 int numMoved;
                 newGame.setWin(Integer.parseInt(rd.readLine()));
                 newGame.setDate(rd.readLine());
@@ -216,7 +216,7 @@ public class RecordGroup {
                             newGame.movement.get(i + 3));
                 }
                 newGame.setPieces();
-                recordGroup.add(newGame);
+                this.records.add(newGame);
             }
             rd.close();
             return true;

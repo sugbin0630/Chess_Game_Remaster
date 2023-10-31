@@ -6,8 +6,6 @@ public class Board extends JFrame {
     final static String FILE_LOCATION = "C:/Users/Sungbin Ko/Desktop/coding/Java/Chess_Game_Remaster/src/";
     private Container c = getContentPane();
     private static RecordGroup recordGroup = RecordGroup.getRecordGroup();
-    static Game_Record loaded_Game_Record;
-    static boolean isLoaded = false;
     static JPanel page1 = new JPanel() {
     };
 
@@ -31,7 +29,7 @@ public class Board extends JFrame {
      * add sort records function to recordButton
      */
     void setButton(Game_Record game) {
-        Dialog loadWindow = new MyDialog(this);
+        
 
         JButton saveButton = new JButton("Save");
         JButton loadButton = new JButton("Load");
@@ -51,8 +49,8 @@ public class Board extends JFrame {
         j.setEnabled(false);
 
         saveButton.addActionListener(event -> {
-            if (recordGroup.saveGame(game, FILE_NAME)) {
-                JOptionPane.showMessageDialog(this, "Saved successfully!", "Message",
+            if (recordGroup.saveGame(game, FILE_LOCATION + FILE_NAME)) {
+                JOptionPane.showMessageDialog(this, "Saved successfully!\ncode: " + game.getCode(), "Message",
                         JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, "Failed to save", "Message", JOptionPane.ERROR_MESSAGE);
@@ -60,6 +58,8 @@ public class Board extends JFrame {
         });
 
         loadButton.addActionListener(event -> {
+            // setLoadWindow();
+            JDialog loadWindow = new MyDialog(this);
             loadWindow.setVisible(true);
         });
     }
@@ -169,6 +169,11 @@ public class Board extends JFrame {
         c.add(board);
     }
 
+    // void setLoadWindow() {
+    //     JLabel window_bg = new JLabel();
+    //     window_bg.setSize(500, 400);
+    //     window_bg.setBackground();
+    // }
     class MyDialog extends JDialog {
         JTextField textField = new JTextField(10);
         JButton records[] = new JButton[recordGroup.getArrayList().size()];
@@ -183,9 +188,10 @@ public class Board extends JFrame {
                         + recordGroup.getArrayList().get(i).getDate());
                 records[i].setPreferredSize(new Dimension(400, 40));
 
+                int j = i;
                 records[i].addActionListener(event -> {
-                    loaded_Game_Record = recordGroup.getArrayList().get(0);
-                    isLoaded = true;
+                    dispose();
+                    new Board(recordGroup.getArrayList().get(j));
                 });
                 add(records[i]);
             }
@@ -198,7 +204,7 @@ public class Board extends JFrame {
         Game_Record newGame = new Game_Record("player1", "player2", 0, 1,
                 recordGroup.getArrayList());
 
-        recordGroup.fileLoad(FILE_NAME);
+        recordGroup.fileLoad(FILE_LOCATION + FILE_NAME);
 
         String player1 = JOptionPane.showInputDialog("Enter player1 name");
         String player2 = JOptionPane.showInputDialog("Enter player2 name");
@@ -208,15 +214,6 @@ public class Board extends JFrame {
         if (player2 != null) {
             newGame.setPlayer2(player2);
         }
-
-        Board newBoard = new Board(newGame);
-        while (true) {
-            if (isLoaded) {
-                isLoaded = false;
-                newBoard.removeAll();
-                new Board(loaded_Game_Record);
-            }
-        }
-
+        new Board(newGame);
     }
 }
