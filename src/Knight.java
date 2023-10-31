@@ -8,7 +8,7 @@ public class Knight extends ChessPiece {
         int deltaY = index_Y - this.index_Y;
         int value = checkIndex(index_X, index_Y);
 
-        if (checkIndex(this.index_X, this.index_Y) > 0) {
+        if (checkIndex(this.index_X, this.index_Y) == 1) {
             if (deltaX == 0 && deltaY == 0) {
                 return false;
             }

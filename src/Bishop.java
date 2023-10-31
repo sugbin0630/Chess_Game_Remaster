@@ -7,56 +7,51 @@ public class Bishop extends ChessPiece {
         int deltaX = index_X - this.index_X;
         int deltaY = index_Y - this.index_Y;
         int value = checkIndex(index_X, index_Y);
-
-        if (checkIndex(this.index_X, this.index_Y) > 0) {
-            if (deltaX == 0 && deltaY == 0) {
-                return false;
-            }
-            // Right down
-            if (deltaX == deltaY && deltaY > 0) {
-                for (int i = this.index_Y + 1; i < index_Y; i++) {
-                    if (checkIndex(i, i) != 0) {
-                        return false;
-                    }
-                }
-                if (value == 0 || value == -1) {
-                    return true;
+        if (checkIndex(this.index_X, this.index_Y) != 1) {
+            return false;
+        }
+        // left down
+        if (deltaX < 0 && -deltaX == deltaY) {
+            for (int i = 1; i < deltaY; i++) {
+                if (checkIndex(this.index_X - i, this.index_Y + i) != 0) {
+                    return false;
                 }
             }
-            // Right up
-            if (deltaX == -deltaY && deltaY < 0) {
-                for (int i = this.index_Y - 1; i < index_Y; i--) {
-                    for (int j = this.index_X + 1; j < index_X; j++) {
-                        if (checkIndex(i, j) != 0) {
-                            return false;
-                        }
-                    }
-                }
-                if (value == 0 || value == -1) {
-                    return true;
+            if (value == 0 || value == -1) {
+                return true;
+            }
+        }
+        // left up
+        if (deltaX < 0 && deltaX == deltaY) {
+            for (int i = 1; i < -deltaY; i++) {
+                if (checkIndex(this.index_X - i, this.index_Y - i) != 0) {
+                    return false;
                 }
             }
-            // Left down
-            if (deltaX == -deltaY && deltaX < 0) {
-                for (int i = this.index_Y + 1; i < index_Y; i++) {
-                    if (checkIndex(7 - i, i) != 0) {
-                        return false;
-                    }
-                }
-                if (value == 0 || value == -1) {
-                    return true;
+            if (value == 0 || value == -1) {
+                return true;
+            }
+        }
+        // right down
+        if (deltaX > 0 && deltaX == deltaY) {
+            for (int i = 1; i < deltaY; i++) {
+                if (checkIndex(this.index_X + i, this.index_Y + i) != 0) {
+                    return false;
                 }
             }
-            // Left up
-            if (deltaX == deltaY && deltaX < 0) {
-                for (int i = this.index_Y + 1; i < index_Y; i++) {
-                    if (checkIndex(7 - i, 7 - i) != 0) {
-                        return false;
-                    }
+            if (value == 0 || value == -1) {
+                return true;
+            }
+        }
+        // right up
+        if (deltaX > 0 && deltaX == -deltaY) {
+            for (int i = 1; i < -deltaY; i++) {
+                if (checkIndex(this.index_X + i, this.index_Y - i) != 0) {
+                    return false;
                 }
-                if (value == 0 || value == -1) {
-                    return true;
-                }
+            }
+            if (value == 0 || value == -1) {
+                return true;
             }
         }
         return false;
