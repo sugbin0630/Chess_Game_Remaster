@@ -29,7 +29,6 @@ public class Board extends JFrame {
      * add sort records function to recordButton
      */
     void setButton(Game_Record game) {
-        
 
         JButton saveButton = new JButton("Save");
         JButton loadButton = new JButton("Load");
@@ -58,9 +57,9 @@ public class Board extends JFrame {
         });
 
         loadButton.addActionListener(event -> {
-            // setLoadWindow();
-            JDialog loadWindow = new MyDialog(this);
-            loadWindow.setVisible(true);
+            setLoadWindow();
+            // JDialog loadWindow = new MyDialog(this);
+            // loadWindow.setVisible(true);
         });
     }
 
@@ -169,36 +168,41 @@ public class Board extends JFrame {
         c.add(board);
     }
 
-    // void setLoadWindow() {
-    //     JLabel window_bg = new JLabel();
-    //     window_bg.setSize(500, 400);
-    //     window_bg.setBackground();
-    // }
-    class MyDialog extends JDialog {
-        JTextField textField = new JTextField(10);
-        JButton records[] = new JButton[recordGroup.getArrayList().size()];
-
-        public MyDialog(JFrame frame) {
-            setLayout(new FlowLayout());
-            add(textField);
-            for (int i = 0; i < records.length; i++) {
-                records[i] = new JButton(recordGroup.getArrayList().get(i).getPlayer1() + " vs "
-                        + recordGroup.getArrayList().get(i).getPlayer2() + "   "
-                        + recordGroup.getArrayList().get(i).getCode() + "   "
-                        + recordGroup.getArrayList().get(i).getDate());
-                records[i].setPreferredSize(new Dimension(400, 40));
-
-                int j = i;
-                records[i].addActionListener(event -> {
-                    dispose();
-                    new Board(recordGroup.getArrayList().get(j));
-                });
-                add(records[i]);
-            }
-
-            setSize(500, 400);
-        }
+    void setLoadWindow() {
+        JLabel window_bg = new JLabel();
+        window_bg.setBounds(100, 100, 500, 400);
+        window_bg.setBackground(new Color(255, 255, 255));
+        window_bg.setVisible(true);
+        window_bg.setOpaque(true);
+        c.add(window_bg);
+        c.repaint();
     }
+    // class MyDialog extends JDialog {
+    // JTextField textField = new JTextField(10);
+    // JButton records[] = new JButton[recordGroup.getArrayList().size()];
+
+    // public MyDialog(JFrame frame) {
+    // setLayout(new FlowLayout());
+    // add(textField);
+    // for (int i = 0; i < records.length; i++) {
+    // records[i] = new JButton(recordGroup.getArrayList().get(i).getPlayer1() + "
+    // vs "
+    // + recordGroup.getArrayList().get(i).getPlayer2() + " "
+    // + recordGroup.getArrayList().get(i).getCode() + " "
+    // + recordGroup.getArrayList().get(i).getDate());
+    // records[i].setPreferredSize(new Dimension(400, 40));
+
+    // int j = i;
+    // records[i].addActionListener(event -> {
+    // dispose();
+    // new Board(recordGroup.getArrayList().get(j));
+    // });
+    // add(records[i]);
+    // }
+
+    // setSize(500, 400);
+    // }
+    // }
 
     public static void main(String[] args) {
         Game_Record newGame = new Game_Record("player1", "player2", 0, 1,
