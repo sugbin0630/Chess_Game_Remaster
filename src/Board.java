@@ -1,3 +1,9 @@
+/*TODO
+ * 체스기능
+ * 인터페이스 기능
+ * 체크메이트 기능 모듈화
+ */
+
 import java.awt.*;
 import javax.swing.*;
 
@@ -57,9 +63,10 @@ public class Board extends JFrame {
         });
 
         loadButton.addActionListener(event -> {
+            //패널 이용하기 뜯어고치기
             setLoadWindow();
             // JDialog loadWindow = new MyDialog(this);
-            // loadWindow.setVisible(true);
+            //window_bg.setVisible(true);
         });
     }
 
